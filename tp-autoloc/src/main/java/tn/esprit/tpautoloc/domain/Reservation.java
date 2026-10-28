@@ -8,6 +8,7 @@ import lombok.Setter;
 import tn.esprit.tpautoloc.domain.enums.StatutReservation;
 
 import java.time.LocalDate;
+import java.util.*;
 
 @Entity
 @Table(name = "reservation")
@@ -27,4 +28,13 @@ public class Reservation {
 
     @Enumerated(EnumType.STRING)
     private StatutReservation statut;
+
+    @ManyToOne
+    private Client client;
+
+    @ManyToOne
+    private Vehicule vehicule;
+
+    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL)
+    private Contrat contrat;
 }

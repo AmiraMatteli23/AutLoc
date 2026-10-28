@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.*;
 
 import java.time.LocalDate;
 
@@ -31,4 +32,6 @@ public class Client {
     private String numPermis;
 
     private LocalDate dateInscription;
+    @OneToMany(mappedBy = "client")
+    private Set<Reservation> reservations;
 }
