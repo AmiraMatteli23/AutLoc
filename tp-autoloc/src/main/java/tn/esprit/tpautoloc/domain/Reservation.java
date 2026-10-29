@@ -1,5 +1,6 @@
 package tn.esprit.tpautoloc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,7 +9,6 @@ import lombok.Setter;
 import tn.esprit.tpautoloc.domain.enums.StatutReservation;
 
 import java.time.LocalDate;
-import java.util.*;
 
 @Entity
 @Table(name = "reservation")
@@ -30,11 +30,14 @@ public class Reservation {
     private StatutReservation statut;
 
     @ManyToOne
+    @JsonIgnoreProperties("reservations")
     private Client client;
 
     @ManyToOne
+    @JsonIgnoreProperties({"reservations", "maintenances"})
     private Vehicule vehicule;
 
     @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("reservation")
     private Contrat contrat;
 }

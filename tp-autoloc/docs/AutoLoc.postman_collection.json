@@ -1,0 +1,606 @@
+{
+	"info": {
+		"_postman_id": "a91e5c3e-9f3b-4861-bb1c-d784a0c8b211",
+		"name": "AutoLoc API - Atelier 5 (Complet)",
+		"description": "Collection Postman complète pour l'Atelier 5 (ASI 26-27). Contient un dossier par entité (9 entités) avec toutes les requêtes CRUD nominales et les cas d'erreur (400, 404, 405).",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Agences",
+			"item": [
+				{
+					"name": "GET - Lister toutes les agences (200)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/agences"
+					}
+				},
+				{
+					"name": "POST - Créer une agence (201)",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nom\": \"Agence Tunis Centre\",\n    \"ville\": \"Tunis\",\n    \"adresse\": \"Avenue Habib Bourguiba\",\n    \"telephone\": \"71000000\"\n}"
+						},
+						"url": "{{baseUrl}}/agences"
+					}
+				},
+				{
+					"name": "POST - Créer agence erreur nom vide (400)",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nom\": \"\",\n    \"ville\": \"Tunis\"\n}"
+						},
+						"url": "{{baseUrl}}/agences"
+					}
+				},
+				{
+					"name": "GET - Consulter agence existante (200)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/agences/1"
+					}
+				},
+				{
+					"name": "GET - Consulter agence inexistante (404)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/agences/9999"
+					}
+				},
+				{
+					"name": "PUT - Modifier une agence (200)",
+					"request": {
+						"method": "PUT",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nom\": \"Agence Tunis Belvédère\",\n    \"ville\": \"Tunis\",\n    \"adresse\": \"Rue de Palestine\",\n    \"telephone\": \"71111111\"\n}"
+						},
+						"url": "{{baseUrl}}/agences/1"
+					}
+				},
+				{
+					"name": "DELETE - Supprimer une agence (204)",
+					"request": {
+						"method": "DELETE",
+						"url": "{{baseUrl}}/agences/1"
+					}
+				}
+			]
+		},
+		{
+			"name": "2. Clients",
+			"item": [
+				{
+					"name": "GET - Lister tous les clients (200)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/clients"
+					}
+				},
+				{
+					"name": "POST - Créer un client (201)",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nom\": \"Ben Ali\",\n    \"prenom\": \"Ahmed\",\n    \"email\": \"ahmed.benali@mail.com\",\n    \"telephone\": \"98000000\",\n    \"numPermis\": \"TN123456\",\n    \"dateInscription\": \"2026-10-28\"\n}"
+						},
+						"url": "{{baseUrl}}/clients"
+					}
+				},
+				{
+					"name": "POST - Créer client erreur email manquant (400)",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nom\": \"Ben Ali\",\n    \"prenom\": \"Ahmed\",\n    \"email\": \"\"\n}"
+						},
+						"url": "{{baseUrl}}/clients"
+					}
+				},
+				{
+					"name": "GET - Consulter client existant (200)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/clients/1"
+					}
+				},
+				{
+					"name": "GET - Consulter client inexistant (404)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/clients/9999"
+					}
+				},
+				{
+					"name": "PUT - Modifier un client (200)",
+					"request": {
+						"method": "PUT",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nom\": \"Ben Ali\",\n    \"prenom\": \"Ahmed\",\n    \"email\": \"ahmed.pro@mail.com\",\n    \"telephone\": \"98111222\",\n    \"numPermis\": \"TN123456\",\n    \"dateInscription\": \"2026-10-28\"\n}"
+						},
+						"url": "{{baseUrl}}/clients/1"
+					}
+				},
+				{
+					"name": "DELETE - Supprimer un client (204)",
+					"request": {
+						"method": "DELETE",
+						"url": "{{baseUrl}}/clients/1"
+					}
+				}
+			]
+		},
+		{
+			"name": "3. Véhicules",
+			"item": [
+				{
+					"name": "GET - Lister tous les véhicules (200)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/vehicules"
+					}
+				},
+				{
+					"name": "POST - Créer un véhicule (201)",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"immatriculation\": \"234-TUN-5678\",\n    \"marque\": \"Peugeot\",\n    \"modele\": \"208\",\n    \"categorie\": \"CITADINE\",\n    \"tarifJournalier\": 95.00,\n    \"statut\": \"DISPONIBLE\"\n}"
+						},
+						"url": "{{baseUrl}}/vehicules"
+					}
+				},
+				{
+					"name": "POST - Créer véhicule tarif négatif (400)",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"immatriculation\": \"234-TUN-5678\",\n    \"marque\": \"Peugeot\",\n    \"tarifJournalier\": -20.00\n}"
+						},
+						"url": "{{baseUrl}}/vehicules"
+					}
+				},
+				{
+					"name": "GET - Consulter véhicule existant (200)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/vehicules/1"
+					}
+				},
+				{
+					"name": "GET - Consulter véhicule inexistant (404)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/vehicules/9999"
+					}
+				},
+				{
+					"name": "PUT - Modifier un véhicule (200)",
+					"request": {
+						"method": "PUT",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"immatriculation\": \"234-TUN-5678\",\n    \"marque\": \"Peugeot\",\n    \"modele\": \"208 GT\",\n    \"categorie\": \"CITADINE\",\n    \"tarifJournalier\": 110.00,\n    \"statut\": \"DISPONIBLE\"\n}"
+						},
+						"url": "{{baseUrl}}/vehicules/1"
+					}
+				},
+				{
+					"name": "DELETE - Supprimer un véhicule (204)",
+					"request": {
+						"method": "DELETE",
+						"url": "{{baseUrl}}/vehicules/1"
+					}
+				}
+			]
+		},
+		{
+			"name": "4. Contrats",
+			"item": [
+				{
+					"name": "GET - Lister tous les contrats (200)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/contrats"
+					}
+				},
+				{
+					"name": "POST - Créer un contrat avec paiement (201)",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dateSignature\": \"2026-10-28\",\n    \"montantTotal\": 480.00,\n    \"valide\": true,\n    \"paiements\": [\n        {\n            \"montant\": 480.00,\n            \"datePaiement\": \"2026-10-28\",\n            \"modePaiement\": \"CARTE\"\n        }\n    ]\n}"
+						},
+						"url": "{{baseUrl}}/contrats"
+					}
+				},
+				{
+					"name": "POST - Créer contrat montant négatif (400)",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dateSignature\": \"2026-10-28\",\n    \"montantTotal\": -50.00,\n    \"valide\": false\n}"
+						},
+						"url": "{{baseUrl}}/contrats"
+					}
+				},
+				{
+					"name": "GET - Consulter contrat existant (200)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/contrats/1"
+					}
+				},
+				{
+					"name": "GET - Consulter contrat inexistant (404)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/contrats/9999"
+					}
+				},
+				{
+					"name": "PUT - Modifier un contrat (200)",
+					"request": {
+						"method": "PUT",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dateSignature\": \"2026-10-28\",\n    \"montantTotal\": 520.00,\n    \"valide\": true\n}"
+						},
+						"url": "{{baseUrl}}/contrats/1"
+					}
+				},
+				{
+					"name": "DELETE - Supprimer un contrat (204)",
+					"request": {
+						"method": "DELETE",
+						"url": "{{baseUrl}}/contrats/1"
+					}
+				}
+			]
+		},
+		{
+			"name": "5. Paiements (Lecture seule)",
+			"item": [
+				{
+					"name": "GET - Lister tous les paiements (200)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/paiements"
+					}
+				},
+				{
+					"name": "GET - Consulter paiement par ID (200)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/paiements/1"
+					}
+				},
+				{
+					"name": "GET - Consulter paiement inexistant (404)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/paiements/9999"
+					}
+				},
+				{
+					"name": "POST - Créer paiement refusé (405 Method Not Allowed)",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"montant\": 150.00,\n    \"modePaiement\": \"CARTE\"\n}"
+						},
+						"url": "{{baseUrl}}/paiements"
+					}
+				}
+			]
+		},
+		{
+			"name": "6. Employés",
+			"item": [
+				{
+					"name": "GET - Lister tous les employés (200)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/employes"
+					}
+				},
+				{
+					"name": "POST - Créer un employé avec agence imbriquée (201)",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nom\": \"Gharbi\",\n    \"prenom\": \"Mohamed\",\n    \"role\": \"AGENT\",\n    \"agence\": {\n        \"idAgence\": 1\n    }\n}"
+						},
+						"url": "{{baseUrl}}/employes"
+					}
+				},
+				{
+					"name": "POST - Créer employé nom vide (400)",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nom\": \"\",\n    \"role\": \"AGENT\"\n}"
+						},
+						"url": "{{baseUrl}}/employes"
+					}
+				},
+				{
+					"name": "GET - Consulter employé existant (200)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/employes/1"
+					}
+				},
+				{
+					"name": "GET - Consulter employé inexistant (404)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/employes/9999"
+					}
+				},
+				{
+					"name": "PUT - Modifier un employé (200)",
+					"request": {
+						"method": "PUT",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nom\": \"Gharbi\",\n    \"prenom\": \"Mohamed\",\n    \"role\": \"MANAGER\"\n}"
+						},
+						"url": "{{baseUrl}}/employes/1"
+					}
+				},
+				{
+					"name": "DELETE - Supprimer un employé (204)",
+					"request": {
+						"method": "DELETE",
+						"url": "{{baseUrl}}/employes/1"
+					}
+				}
+			]
+		},
+		{
+			"name": "7. Équipements",
+			"item": [
+				{
+					"name": "GET - Lister tous les équipements (200)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/equipements"
+					}
+				},
+				{
+					"name": "POST - Créer un équipement (201)",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"libelle\": \"GPS Navigation HD\"\n}"
+						},
+						"url": "{{baseUrl}}/equipements"
+					}
+				},
+				{
+					"name": "POST - Créer équipement libellé vide (400)",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"libelle\": \"\"\n}"
+						},
+						"url": "{{baseUrl}}/equipements"
+					}
+				},
+				{
+					"name": "GET - Consulter équipement existant (200)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/equipements/1"
+					}
+				},
+				{
+					"name": "GET - Consulter équipement inexistant (404)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/equipements/9999"
+					}
+				},
+				{
+					"name": "PUT - Modifier un équipement (200)",
+					"request": {
+						"method": "PUT",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"libelle\": \"GPS Navigation Connecté 4K\"\n}"
+						},
+						"url": "{{baseUrl}}/equipements/1"
+					}
+				},
+				{
+					"name": "DELETE - Supprimer un équipement (204)",
+					"request": {
+						"method": "DELETE",
+						"url": "{{baseUrl}}/equipements/1"
+					}
+				}
+			]
+		},
+		{
+			"name": "8. Réservations",
+			"item": [
+				{
+					"name": "GET - Lister toutes les réservations (200)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/reservations"
+					}
+				},
+				{
+					"name": "POST - Créer une réservation (201)",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dateDebut\": \"2026-11-01\",\n    \"dateFin\": \"2026-11-05\",\n    \"statut\": \"CONFIRMEE\",\n    \"client\": {\n        \"idClient\": 1\n    },\n    \"vehicule\": {\n        \"idVehicule\": 1\n    }\n}"
+						},
+						"url": "{{baseUrl}}/reservations"
+					}
+				},
+				{
+					"name": "POST - Créer réservation dates inversées (400)",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dateDebut\": \"2026-11-10\",\n    \"dateFin\": \"2026-11-05\",\n    \"statut\": \"CONFIRMEE\"\n}"
+						},
+						"url": "{{baseUrl}}/reservations"
+					}
+				},
+				{
+					"name": "GET - Consulter réservation existante (200)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/reservations/1"
+					}
+				},
+				{
+					"name": "GET - Consulter réservation inexistante (404)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/reservations/9999"
+					}
+				},
+				{
+					"name": "PUT - Modifier une réservation (200)",
+					"request": {
+						"method": "PUT",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dateDebut\": \"2026-11-01\",\n    \"dateFin\": \"2026-11-07\",\n    \"statut\": \"EN_COURS\"\n}"
+						},
+						"url": "{{baseUrl}}/reservations/1"
+					}
+				},
+				{
+					"name": "DELETE - Supprimer une réservation (204)",
+					"request": {
+						"method": "DELETE",
+						"url": "{{baseUrl}}/reservations/1"
+					}
+				}
+			]
+		},
+		{
+			"name": "9. Maintenances",
+			"item": [
+				{
+					"name": "GET - Lister toutes les maintenances (200)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/maintenances"
+					}
+				},
+				{
+					"name": "POST - Créer une maintenance (201)",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dateDebut\": \"2026-11-01\",\n    \"dateFin\": \"2026-11-03\",\n    \"description\": \"Vidange et changement de filtres\",\n    \"vehicule\": {\n        \"idVehicule\": 1\n    }\n}"
+						},
+						"url": "{{baseUrl}}/maintenances"
+					}
+				},
+				{
+					"name": "POST - Créer maintenance dates inversées (400)",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dateDebut\": \"2026-11-10\",\n    \"dateFin\": \"2026-11-02\",\n    \"description\": \"Entretien freinage\"\n}"
+						},
+						"url": "{{baseUrl}}/maintenances"
+					}
+				},
+				{
+					"name": "GET - Consulter maintenance existante (200)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/maintenances/1"
+					}
+				},
+				{
+					"name": "GET - Consulter maintenance inexistante (404)",
+					"request": {
+						"method": "GET",
+						"url": "{{baseUrl}}/maintenances/9999"
+					}
+				},
+				{
+					"name": "PUT - Modifier une maintenance (200)",
+					"request": {
+						"method": "PUT",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dateDebut\": \"2026-11-01\",\n    \"dateFin\": \"2026-11-04\",\n    \"description\": \"Vidange complète et plaquettes de frein\"\n}"
+						},
+						"url": "{{baseUrl}}/maintenances/1"
+					}
+				},
+				{
+					"name": "DELETE - Supprimer une maintenance (204)",
+					"request": {
+						"method": "DELETE",
+						"url": "{{baseUrl}}/maintenances/1"
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080/api"
+		}
+	]
+}

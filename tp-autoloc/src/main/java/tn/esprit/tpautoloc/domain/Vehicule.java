@@ -1,5 +1,8 @@
 package tn.esprit.tpautoloc.domain;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,10 +20,12 @@ import java.util.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Vehicule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonAlias("id")
     private Long idVehicule;
 
     private String immatriculation;
@@ -38,15 +43,19 @@ public class Vehicule {
     private StatutVehicule statut;
 
     @ManyToOne
+    @JsonIgnoreProperties({"employes", "vehicules"})
     private Agence agence;
 
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "vehicule")
+    @JsonIgnore
     private Set<Reservation> reservations;
 
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "vehicule")
+    @JsonIgnore
     private Set<Maintenance> maintenances;
 
     @ManyToMany
+    @JsonIgnoreProperties("vehicules")
     private Set<Equipement> equipements;
 
 }

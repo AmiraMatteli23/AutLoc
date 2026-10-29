@@ -1,5 +1,6 @@
 package tn.esprit.tpautoloc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,5 +28,6 @@ public class Maintenance {
     private String description;
 
     @ManyToOne
+    @JsonIgnoreProperties({"reservations", "maintenances"})
     private Vehicule vehicule;
 }
